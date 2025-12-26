@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Topics</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <h1>Topics for {{ subject.name }}</h1>
+
+    <form method="post">
+        <input type="text" name="title" placeholder="Enter topic title" required>
+        <button type="submit">Add Topic</button>
+    </form>
+
+    <ul>
+        {% for topic in topics %}
+            <li>
+                {{ topic.title }} —
+                <a href="/topics/{{ topic.id }}">Open Topic</a>
+            </li>
+        {% else %}
+            <li>No topics added yet</li>
+        {% endfor %}
+    </ul>
+
+    <a href="/subjects">Back to Subjects</a>
+</body>
+</html>

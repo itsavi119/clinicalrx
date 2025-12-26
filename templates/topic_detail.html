@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ topic.title }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <h1>{{ topic.title }}</h1>
+
+    <form method="post">
+        <input type="text" name="title" placeholder="Section title" required><br><br>
+        <textarea name="content" placeholder="Section content" rows="5" cols="40"></textarea><br><br>
+        <button type="submit">Add Section</button>
+    </form>
+
+    <hr>
+
+    {% for section in sections %}
+        <h3>{{ section.title }}</h3>
+        <p>{{ section.content }}</p>
+    {% else %}
+        <p>No sections added yet</p>
+    {% endfor %}
+
+    <a href="/subjects">Back to Subjects</a>
+</body>
+</html>
