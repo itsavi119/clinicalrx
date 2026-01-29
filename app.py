@@ -16,6 +16,10 @@ def get_db_connection():
 def home():
     return render_template("index.html")
 
+@app.route("/calculators")
+def calculators():
+    return render_template("enhanced_medcalc_pro 99.99 (1).html")
+
 @app.route("/subjects", methods=["GET", "POST"])
 def subjects():
     conn = get_db_connection()
