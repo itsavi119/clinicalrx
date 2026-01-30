@@ -369,6 +369,9 @@
 
     <script>
         // APGAR Score Calculator
+        // APGAR stands for: Appearance, Pulse, Grimace, Activity, Respiration
+        // Each criterion is scored 0-2, total score ranges from 0-10
+        // Score 7-10: Normal, 4-6: Fairly low, 0-3: Critically low
         function calculateApgar() {
             const appearance = parseInt(document.getElementById('apgar-appearance').value);
             const pulse = parseInt(document.getElementById('apgar-pulse').value);
@@ -416,6 +419,7 @@
         }
 
         // IV Drip Rate Calculator
+        // Formula: Drip Rate (drops/min) = (Volume (mL) × Drop Factor (drops/mL)) / Time (minutes)
         function calculateIVDripRate() {
             const volume = parseFloat(document.getElementById('iv-volume').value);
             const time = parseFloat(document.getElementById('iv-time').value);
@@ -459,6 +463,9 @@
         }
 
         // Pediatric Dosage Calculator
+        // Calculates medication dose based on patient weight
+        // Formula: Total Daily Dose = Weight (kg) × Dose (mg/kg)
+        // If concentration is provided, also calculates volume: Volume = Dose / Concentration
         function calculatePediatricDose() {
             const weight = parseFloat(document.getElementById('ped-weight').value);
             const dosePerKg = parseFloat(document.getElementById('ped-dose-per-kg').value);
@@ -470,19 +477,19 @@
             // Validate inputs
             if (isNaN(weight) || weight <= 0) {
                 resultDiv.className = 'result show error';
-                resultDiv.innerHTML = '<h3>Error</h3><p>Please enter a valid patient weight (kg).</p>';
+                resultDiv.innerHTML = '<h3>Error</h3><p>Please enter a valid patient weight. Weight must be greater than 0 kg.</p>';
                 return;
             }
 
             if (isNaN(dosePerKg) || dosePerKg <= 0) {
                 resultDiv.className = 'result show error';
-                resultDiv.innerHTML = '<h3>Error</h3><p>Please enter a valid dose per kg.</p>';
+                resultDiv.innerHTML = '<h3>Error</h3><p>Please enter a valid dose per kg. Dose must be greater than 0 mg/kg.</p>';
                 return;
             }
 
             if (isNaN(dosesPerDay) || dosesPerDay <= 0) {
                 resultDiv.className = 'result show error';
-                resultDiv.innerHTML = '<h3>Error</h3><p>Please enter a valid number of doses per day.</p>';
+                resultDiv.innerHTML = '<h3>Error</h3><p>Please enter a valid number of doses per day. Must be at least 1.</p>';
                 return;
             }
 
@@ -647,7 +654,9 @@
 
             // Calculate cardiac output (CO = HR × SV)
             const cardiacOutput = (heartRate * strokeVolume) / 1000; // Convert to L/min
-            const cardiacIndex = cardiacOutput / 1.8; // Assuming average BSA of 1.8 m²
+            // Cardiac Index = CO / BSA. Using average adult BSA of 1.8 m² for approximation
+            // Note: For accurate CI, BSA should be calculated from patient height and weight
+            const cardiacIndex = cardiacOutput / 1.8;
 
             let interpretation = '';
             if (cardiacOutput >= 4 && cardiacOutput <= 8) {
