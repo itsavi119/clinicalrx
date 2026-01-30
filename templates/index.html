@@ -1,1 +1,46 @@
-<!-- templates folder created -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>ClinicalRx - Medical Tools</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+        .nav-links {
+            list-style: none;
+            padding: 0;
+        }
+        .nav-links li {
+            margin: 15px 0;
+        }
+        .nav-links a {
+            display: block;
+            padding: 15px;
+            background: #667eea;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            text-align: center;
+            transition: background 0.3s;
+        }
+        .nav-links a:hover {
+            background: #764ba2;
+        }
+    </style>
+</head>
+<body>
+    <h1>Welcome to ClinicalRx</h1>
+    <ul class="nav-links">
+        <li><a href="/calculators">Medical Calculators</a></li>
+        <li><a href="/subjects">Study Subjects</a></li>
+    </ul>
+</body>
+</html>
